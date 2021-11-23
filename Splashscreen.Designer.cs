@@ -34,6 +34,7 @@ namespace Esportatore
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelSlide = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSlide)).BeginInit();
             this.SuspendLayout();
@@ -59,8 +60,13 @@ namespace Esportatore
             // 
             // timer1
             // 
-            this.timer1.Interval = 3;
+            this.timer1.Interval = 290;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 3000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Splashscreen
             // 
@@ -86,5 +92,6 @@ namespace Esportatore
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox panelSlide;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }

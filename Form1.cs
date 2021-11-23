@@ -25,18 +25,9 @@ namespace Esportatore
         string[] radiceIstanze = null;
         public Form1()
         {
-            Thread trd = new Thread(new ThreadStart(Form1_Run));
-            trd.Start();
-            Thread.Sleep(5000);
             InitializeComponent();
-            trd.Abort();
         }
-
-        private void Form1_Run()
-        {
-            Application.Run(new Splashscreen());
-        }
-
+        
         private void scanIniFile(string iniFile)
         {
             string[] parts = iniFile.Split(new String[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
