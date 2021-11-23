@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using WinSCP;
+using System.Threading;
 
 namespace Esportatore
 {
@@ -26,6 +27,7 @@ namespace Esportatore
         {
             InitializeComponent();
         }
+        
         private void scanIniFile(string iniFile)
         {
             string[] parts = iniFile.Split(new String[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
