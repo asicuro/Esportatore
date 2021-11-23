@@ -13,34 +13,32 @@ namespace Esportatore
 {
     public partial class Splashscreen : Form
     {
+        Bitmap barchino;
+        Bitmap sfondo;
+        Graphics doubleBuffer;
+        float x = -50;
         public Splashscreen()
         {
+            barchino = new Bitmap(Esportatore.Properties.Resources.barchino);
+            sfondo = new Bitmap(Esportatore.Properties.Resources.sea);
             InitializeComponent();
             timer1.Start();
-            timer2.Start();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            object[] objArgs = new object[] { ControlStyles.AllPaintingInWmPaint |
-                                      ControlStyles.UserPaint |
-                                      ControlStyles.OptimizedDoubleBuffer, true };
-            MethodInfo SetStyleMethod = typeof(Control).GetMethod("SetStyle", BindingFlags.NonPublic | BindingFlags.Instance);
+            timer1.Interval = 150;
+        }
 
-            SetStyleMethod.Invoke(this.panelSlide, objArgs);
+        private void Splashscreen_Paint(object sender, PaintEventArgs e)
+        {
+            doubleBuffer = e.Graphics;
+            //System.Drawing.Imaging.ImageAttributes attr = new System.Drawing.Imaging.ImageAttributes();
+            doubleBuffer = this.CreateGraphics();
+            doubleBuffer.DrawImage(barchino, new Point((int)x,190));
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            panelSlide.Left += 15;
-
-            if (panelSlide.Left > 1080)
-                panelSlide.Left = -200;
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            timer2.Enabled = false;
-            Form1 f = new Form1();
-            f.Show();
-            this.Hide();
+            x += 90;
+            doubleBuffer = this.CreateGraphics();
+            doubleBuffer.DrawImage(barchino, new Point((int)x, 190));
         }
     }
 }
