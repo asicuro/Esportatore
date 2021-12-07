@@ -48,7 +48,9 @@ namespace Esportatore
             {
                 "Guarda non so come dirtelo, ma ",
                 "Lo sapevi che ",
-                "Devo dirti una cosa: "
+                "Devo dirti una cosa: ",
+                "E' successa una cosa inquietante: ",
+                "Io non ci ho capito niente, ma "
             };
             string[] accoda = new string[]
             {
@@ -57,7 +59,8 @@ namespace Esportatore
                 "; \r\nCerto che scoccy è una checca isterica!",
                 "... \r\nVorrei essere un insegnante",
                 ". \r\nSapete quanto guadagna un muratore?!?",
-                "...\r\nDevo andare in Norvegia... Lì tutti lavorano il legno..."
+                "...\r\nDevo andare in Norvegia... Lì tutti lavorano il legno...",
+                "..\r\nSai quante ore lavora un insegnante?"
             };
             lblMessaggio.Text = precoda[(new Random(DateTime.UtcNow.Millisecond)).Next(precoda.Length)] + message + accoda[(new Random(DateTime.UtcNow.Millisecond)).Next(accoda.Length)];
             ballon.Visible = lblMessaggio.Visible = true;
