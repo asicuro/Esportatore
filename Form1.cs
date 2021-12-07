@@ -23,6 +23,7 @@ namespace Esportatore
         string pwd = "";
         string fingerprint = "";
         string[] radiceIstanze = null;
+        string progetto = "";
         public Form1()
         {
             InitializeComponent();
@@ -73,6 +74,15 @@ namespace Esportatore
                 StreamReader file = new StreamReader(iniFile);
                 string contentIniFile = file.ReadToEnd();
                 file.Close();
+                progetto = contentIniFile.Substring(0, contentIniFile.IndexOf("\r\n"));
+                bool thereIsProject = progetto.IndexOf("PROJECT:") != -1;
+                if (thereIsProject)
+                {
+                    contentIniFile = contentIniFile.Substring(contentIniFile.IndexOf("\r\n") + 2);
+                    progetto = progetto.Replace("PROJECT:", "").Replace("\r", "").Replace("\n", "");
+                }
+                else
+                    progetto = "";
                 configurazioni = Configurazione.getConfigurazioni(contentIniFile);
                 if (configurazioni == null)
                 {
@@ -208,7 +218,10 @@ namespace Esportatore
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            FB.ShowDialog();
+            if (progetto == "")
+                FB.ShowDialog();
+            else
+                FB.SelectedPath = progetto;
             selectedPath = FB.SelectedPath;
             TreeNode radice = TV.Nodes.Add("*root*");
 
@@ -300,6 +313,11 @@ namespace Esportatore
         private void lblMessaggio_EnabledChanged(object sender, EventArgs e)
         {
             lblMessaggio.BackColor = Color.White;
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 

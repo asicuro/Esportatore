@@ -42,13 +42,14 @@ namespace Esportatore
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BackgroundImage = global::Esportatore.Properties.Resources.sea;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1021, 511);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Splashscreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splashscreen";
+            this.Load += new System.EventHandler(this.Splashscreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Splashscreen_Paint);
             this.ResumeLayout(false);
 

@@ -15,30 +15,57 @@ namespace Esportatore
     {
         Bitmap barchino;
         Bitmap sfondo;
-        Graphics doubleBuffer;
+        Bitmap doubleBuffer;
+        Graphics backBuffer;
         float x = -50;
+        float msecs = 0;
+        float durataMsecs = 5000;
         public Splashscreen()
         {
+
+            doubleBuffer = new Bitmap(this.Width, this.Height);
+            backBuffer = Graphics.FromImage(doubleBuffer);
             barchino = new Bitmap(Esportatore.Properties.Resources.barchino);
             sfondo = new Bitmap(Esportatore.Properties.Resources.sea);
             InitializeComponent();
+            timer1.Interval = 10;
             timer1.Start();
-            timer1.Interval = 150;
+            
         }
 
         private void Splashscreen_Paint(object sender, PaintEventArgs e)
         {
-            doubleBuffer = e.Graphics;
+            Graphics g = e.Graphics;
             //System.Drawing.Imaging.ImageAttributes attr = new System.Drawing.Imaging.ImageAttributes();
-            doubleBuffer = this.CreateGraphics();
-            doubleBuffer.DrawImage(barchino, new Point((int)x,190));
+            
+            g.DrawImage(doubleBuffer, 0, 0, this.Width, this.Height);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            x += 90;
-            doubleBuffer = this.CreateGraphics();
-            doubleBuffer.DrawImage(barchino, new Point((int)x, 190));
+            msecs += timer1.Interval;
+            if (msecs > durataMsecs)
+            {
+                timer1.Stop();
+                Form1 form = new Form1();
+                form.Show();
+                this.Hide();
+            }
+            else {
+                x += 5;
+                backBuffer.FillRectangle(Brushes.White, 0, 0, this.Width, this.Height);
+
+                backBuffer.DrawImage(sfondo, new Rectangle(0, 0, this.Width, this.Height), 0, 0, this.Width, this.Height, GraphicsUnit.Pixel);
+                backBuffer.DrawImage(barchino, new Rectangle((int)x, 190, barchino.Width / 3, barchino.Height / 3), 0, 0, barchino.Width, barchino.Height, GraphicsUnit.Pixel);
+                if (x >= this.Width)
+                    x = -50;
+                this.Invalidate();
+            }
+        }
+
+        private void Splashscreen_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

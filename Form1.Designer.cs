@@ -159,6 +159,7 @@ namespace Esportatore
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SVN E\' MEGLIO";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.flavio)).EndInit();
